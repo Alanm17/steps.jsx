@@ -6,22 +6,31 @@ const messages = [
   "Invest your new income 🤑",
 ];
 export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+function Steps() {
   const [step, setStep] = useState(1); // always use const with state
   // const [testt, test] = useState({ name: "Muhammad" });
   const [isOpen, setisOpen] = useState(true); // so as we can see we can only change our main variable with the another variable being used to update as useState has 2 it rerenders our components when state changes as it remembers data between renders
   // console.log(array);
   function handlePrevous() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1); // it is always good to use call back when updating the current state
   }
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((s) => s + 1);
   }
+  // when we have two Components we have to give div
   return (
-    <>
+    <div>
       <button
         className="close"
         onClick={() => {
-          setisOpen(!isOpen);
+          setisOpen((is) => !is);
         }}
       >
         &times;
@@ -52,6 +61,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
