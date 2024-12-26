@@ -9,6 +9,7 @@ export default function App() {
   return (
     <div>
       <Steps />
+      <Steps />
     </div>
   );
 }
@@ -45,26 +46,22 @@ function Steps() {
             Step {step}: {messages[step - 1]}
           </p>
           <div className="buttons">
-            <Button bgColor="#7950f2" color="#fff" onclick={handlePrevous}>
-              <span>👈</span> Previous
-            </Button>
-            <Button bgColor="#7950f2" color="#fff" onclick={handleNext}>
-              Next <span>👉</span>
-            </Button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrevous}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext} // we are using array funtion inside onclick as we once run the app it sees the alert and directly executes it so when we use callback func array func it does not happen
+            >
+              Next
+            </button>
           </div>
         </div>
       )}
     </div>
-  );
-}
-function Button({ bgColor, color, onclick, children }) {
-  return (
-    <button
-      style={{ backgroundColor: bgColor, color: color }}
-      onClick={onclick} // we are using array funtion inside onclick as we once run the app it sees the alert and directly executes it so when we use callback func array func it does not happen
-    >
-      {children}
-    </button>
   );
 }
 // challange
