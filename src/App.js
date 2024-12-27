@@ -10,6 +10,7 @@ export default function App() {
     <div>
       <Steps />
       <StepMessage step={"to apply"}></StepMessage>
+      <CalcTip />
     </div>
   );
 }
@@ -71,6 +72,63 @@ function StepMessage({ step, children }) {
     <div className="message">
       <h3>Step {step}</h3>
       {children}
+    </div>
+  );
+}
+function CalcTip() {
+  const [bill, setBill] = useState("");
+  const [yourTip, setYtip] = useState(5);
+  const [friendTip, setFriendTip] = useState(5);
+  const yourtips = (yourTip * bill) / 100;
+  const friendtips = (friendTip * bill) / 100;
+  const total = parseFloat(bill) + yourtips + friendtips;
+  const tipp = yourtips + friendtips;
+  function reset() {
+    setBill("");
+    setYtip(5);
+    setFriendTip(5);
+  }
+  return (
+    <>
+      <p>
+        <span style={{ fontSize: 25 }}>How much was the bill ? </span>
+        <input
+          type="input"
+          placeholder="Enter the amount"
+          value={bill}
+          onChange={(e) => setBill(Number(e.target.value))}
+        />
+      </p>
+      <TipRate Tip={yourTip} setTip={setYtip}>
+        <span>How did you like the service ?</span>
+      </TipRate>
+      <TipRate Tip={friendTip} setTip={setFriendTip}>
+        <span>How did your friend like the service ?</span>
+      </TipRate>
+      {bill > 1 ? (
+        <h1>{`You pay $${total.toFixed(2)} ($${bill} + $${tipp.toFixed(
+          2
+        )} tip)`}</h1>
+      ) : (
+        ""
+      )}
+      <button style={{ fontSize: 30 }} onClick={reset}>
+        Reset
+      </button>
+    </>
+  );
+}
+function TipRate({ Tip, setTip, children }) {
+  return (
+    <div>
+      <p>
+        <span style={{ fontSize: 25 }}>{children} </span>
+        <select value={Tip} onChange={(e) => setTip(Number(e.target.value))}>
+          <option value={5}>it was not as good (5%)</option>
+          <option value={10}>it was good (10%)</option>
+          <option value={15}>it was really good (15%)</option>
+        </select>
+      </p>
     </div>
   );
 }

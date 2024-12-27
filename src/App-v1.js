@@ -9,7 +9,6 @@ export default function App() {
   return (
     <div>
       <Steps />
-      <Steps />
     </div>
   );
 }
@@ -64,6 +63,7 @@ function Steps() {
     </div>
   );
 }
+
 // challange
 // import { useState } from "react";
 // import "./styles.css";
